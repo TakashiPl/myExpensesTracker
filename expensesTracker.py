@@ -12,6 +12,7 @@ def add_expense():
         "date": date
     }
     expenses.append(expense)
+    x = json.dumps(expenses)
     print("Expense added successfully!")
 
 def view_expenses():
@@ -33,7 +34,23 @@ def total_expenses():
 
 
 
-add_expense()
-view_expenses()
-total_expenses()
+while True:
+    print("\nExpenses Tracker Menu")
+    print("1. Add Expense")
+    print("2. View Expenses")
+    print("3. View Total Amount Of Expenses")
+    print("4. Bye bye")
 
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        add_expense()
+    elif choice == "2":
+        view_expenses()
+    elif choice == "3":
+        total_expenses()
+    elif choice == "4":
+        print("Bye bye, thanks for using our expenses tracker!")
+        break
+    else:
+        print("Wrong choice! Please pick between 1-4")
