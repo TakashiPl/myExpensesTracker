@@ -12,7 +12,6 @@ def add_expense():
         "date": date
     }
     expenses.append(expense)
-    print(x)
     print("Expense added successfully!")
 
 def view_expenses():
