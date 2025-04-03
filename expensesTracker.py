@@ -12,7 +12,7 @@ def add_expense():
         "date": date
     }
     expenses.append(expense)
-    x = json.dumps(expenses)
+    save_expenses()
     print("Expense added successfully!")
 
 def view_expenses():
@@ -33,8 +33,21 @@ def total_expenses():
     print(f"Total amount of the expenses is {total}")
 
 
+def save_expenses():
+    with open("expenses.json","w") as file:
+        json.dump(expenses, file, indent=4)
+
+
+def load_expenses():
+    global expenses
+    try:
+        with open("expenses.json","r") as file:
+            expenses = json.load(file)
+    except FileNotFoundError:
+        expenses = []
 
 while True:
+    load_expenses()
     print("\nExpenses Tracker Menu")
     print("1. Add Expense")
     print("2. View Expenses")
