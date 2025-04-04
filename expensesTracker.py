@@ -1,4 +1,6 @@
 import json
+import tkinter as tk
+from tkinter import messagebox
 expenses = []
 def add_expense():
     amount = float(input("Enter expenses amount: "))
@@ -46,24 +48,49 @@ def load_expenses():
     except FileNotFoundError:
         expenses = []
 
-while True:
+def main():
     load_expenses()
-    print("\nExpenses Tracker Menu")
-    print("1. Add Expense")
-    print("2. View Expenses")
-    print("3. View Total Amount Of Expenses")
-    print("4. Bye bye")
+    while True:
+        print("\nExpenses Tracker Menu")
+        print("1. Add Expense")
+        print("2. View Expenses")
+        print("3. View Total Amount Of Expenses")
+        print("4. Bye bye")
 
-    choice = input("Enter your choice: ")
+        choice = input("Enter your choice: ")
 
-    if choice == "1":
-        add_expense()
-    elif choice == "2":
-        view_expenses()
-    elif choice == "3":
-        total_expenses()
-    elif choice == "4":
-        print("Bye bye, thanks for using our expenses tracker!")
-        break
+        if choice == "1":
+            add_expense()
+        elif choice == "2":
+            view_expenses()
+        elif choice == "3":
+            total_expenses()
+        elif choice == "4":
+            print("Bye bye, thanks for using our expenses tracker!")
+            break
+        else:
+            print("Wrong choice! Please pick between 1-4")
+
+def submit_expense():
+    amount = entry_amount.get()
+    if amount:
+        messagebox.showinfo("Success",f"Expense Added: ${amount}")
+        entry_amount.delete(0,tk.END)
     else:
-        print("Wrong choice! Please pick between 1-4")
+        messagebox.showwarning("Warning","Please enter an amount!")
+
+
+root = tk.Tk()
+root.title("Expense Tracker")
+root.geometry("400x300")
+
+label_amount = tk.Label(root, text="Enter Expense Amount:")
+label_amount.pack()
+
+entry_amount = tk.Entry(root)
+entry_amount.pack()
+
+btn_submit = tk.Button(root, text="Add Expense", command=submit_expense)
+btn_submit.pack()
+
+root.mainloop()
