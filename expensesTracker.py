@@ -50,26 +50,7 @@ def load_expenses():
 
 def main():
     load_expenses()
-    while True:
-        print("\nExpenses Tracker Menu")
-        print("1. Add Expense")
-        print("2. View Expenses")
-        print("3. View Total Amount Of Expenses")
-        print("4. Bye bye")
-
-        choice = input("Enter your choice: ")
-
-        if choice == "1":
-            add_expense()
-        elif choice == "2":
-            view_expenses()
-        elif choice == "3":
-            total_expenses()
-        elif choice == "4":
-            print("Bye bye, thanks for using our expenses tracker!")
-            break
-        else:
-            print("Wrong choice! Please pick between 1-4")
+    
 
 def submit_expense():
     amount = entry_amount.get()
@@ -83,6 +64,12 @@ def submit_expense():
 root = tk.Tk()
 root.title("Expense Tracker")
 root.geometry("400x300")
+
+label_category = tk.Label(root, text="Enter Expense Category:")
+label_category.pack()
+
+entry_category = tk.Entry(root)
+entry_category.pack()
 
 label_amount = tk.Label(root, text="Enter Expense Amount:")
 label_amount.pack()
